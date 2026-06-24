@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles } from "lucide-react";
-
+import { Menu, X } from "lucide-react";
+import logoImg from "../../assets/Logo.png";
 const links = [
   { label: "Home", href: "#home" },
   { label: "Monuments", href: "#monuments" },
@@ -12,7 +12,13 @@ const links = [
   { label: "AI Assistant", href: "#assistant" },
 ];
 
-export function Navbar({ theme, toggleTheme }: { theme: "dark" | "light"; toggleTheme: () => void }) {
+export function Navbar({
+  theme,
+  toggleTheme,
+}: {
+  theme: "dark" | "light";
+  toggleTheme: () => void;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -39,9 +45,7 @@ export function Navbar({ theme, toggleTheme }: { theme: "dark" | "light"; toggle
           }`}
         >
           <a href="#home" className="flex items-center gap-2 shrink-0">
-            <div className="grid h-9 w-9 place-items-center rounded-xl btn-gold">
-              <Sparkles className="h-4 w-4" />
-            </div>
+            <img src={logoImg} alt="HeritageAR Logo" className="object-contain h-[48px] w-[48px] border border-[#ddb049] rounded-[40px]" />
             <span className="font-display text-lg font-bold tracking-wider">
               Heritage<span className="text-gold">AR</span>
             </span>

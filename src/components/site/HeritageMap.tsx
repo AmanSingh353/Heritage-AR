@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Eye, Sparkles } from "lucide-react";
 import { SectionHeader } from "./FeaturedSites";
+import odishaMapImage from "../../assets/Odisha_Map.svg";
 
 type Site = {
   id: string;
@@ -15,11 +16,57 @@ type Site = {
 };
 
 const sites: Site[] = [
-  { id: "muk", name: "Mukteswara Temple", location: "Bhubaneswar", era: "10th century CE", coords: "20.2376° N, 85.8362° E", description: "The 'gem of Odisha architecture' — a 10th-century Shiva temple famous for its sculpted torana.", x: 42, y: 58 },
-  { id: "kon", name: "Konark Sun Temple", location: "Konark", era: "13th century CE", coords: "19.8876° N, 86.0945° E", description: "UNESCO-listed chariot of the Sun, carved from khondalite and laterite stone.", x: 56, y: 64 },
-  { id: "jag", name: "Jagannath Temple", location: "Puri", era: "12th century CE", coords: "19.8048° N, 85.8175° E", description: "A living temple to Lord Jagannath and one of the four sacred Char Dham sites.", x: 50, y: 72 },
-  { id: "uda", name: "Udayagiri & Khandagiri", location: "Bhubaneswar", era: "2nd century BCE", coords: "20.2625° N, 85.7847° E", description: "Twin hills with rock-cut Jain caves from the reign of King Kharavela.", x: 40, y: 56 },
-  { id: "rat", name: "Ratnagiri", location: "Jajpur", era: "5th–12th century CE", coords: "20.6500° N, 86.3333° E", description: "A vast Buddhist monastic complex of stupas, viharas and exquisite sculptures.", x: 64, y: 36 },
+  {
+    id: "muk",
+    name: "Mukteswara Temple",
+    location: "Bhubaneswar",
+    era: "10th century CE",
+    coords: "20.2376° N, 85.8362° E",
+    description:
+      "The 'gem of Odisha architecture' — a 10th-century Shiva temple famous for its sculpted torana.",
+    x: 42,
+    y: 58,
+  },
+  {
+    id: "kon",
+    name: "Konark Sun Temple",
+    location: "Konark",
+    era: "13th century CE",
+    coords: "19.8876° N, 86.0945° E",
+    description: "UNESCO-listed chariot of the Sun, carved from khondalite and laterite stone.",
+    x: 56,
+    y: 64,
+  },
+  {
+    id: "jag",
+    name: "Jagannath Temple",
+    location: "Puri",
+    era: "12th century CE",
+    coords: "19.8048° N, 85.8175° E",
+    description: "A living temple to Lord Jagannath and one of the four sacred Char Dham sites.",
+    x: 50,
+    y: 72,
+  },
+  {
+    id: "uda",
+    name: "Udayagiri & Khandagiri",
+    location: "Bhubaneswar",
+    era: "2nd century BCE",
+    coords: "20.2625° N, 85.7847° E",
+    description: "Twin hills with rock-cut Jain caves from the reign of King Kharavela.",
+    x: 40,
+    y: 56,
+  },
+  {
+    id: "rat",
+    name: "Ratnagiri",
+    location: "Jajpur",
+    era: "5th–12th century CE",
+    coords: "20.6500° N, 86.3333° E",
+    description: "A vast Buddhist monastic complex of stupas, viharas and exquisite sculptures.",
+    x: 64,
+    y: 36,
+  },
 ];
 
 export function HeritageMap() {
@@ -30,39 +77,18 @@ export function HeritageMap() {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           kicker="Interactive Heritage Map"
-          title={<>Trace Odisha's <span className="text-gold italic">sacred geography</span></>}
+          title={
+            <>
+              Trace Odisha's <span className="text-gold italic">sacred geography</span>
+            </>
+          }
           subtitle="Glowing markers locate every monument across the state. Tap one to open its dossier."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
           {/* Map */}
           <div className="glass relative aspect-[4/3] overflow-hidden rounded-3xl p-4 sm:p-6">
-            <svg viewBox="0 0 400 320" className="h-full w-full">
-              <defs>
-                <radialGradient id="land" cx="50%" cy="50%">
-                  <stop offset="0%" stopColor="oklch(0.35 0.05 80 / 0.6)" />
-                  <stop offset="100%" stopColor="oklch(0.22 0.04 265 / 0.3)" />
-                </radialGradient>
-                <linearGradient id="border" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.78 0.13 85 / 0.8)" />
-                  <stop offset="100%" stopColor="oklch(0.78 0.13 85 / 0.3)" />
-                </linearGradient>
-              </defs>
-              {/* Stylised Odisha-ish blob */}
-              <path
-                d="M120,40 C170,30 230,40 280,70 C320,95 340,140 330,190 C320,235 280,270 230,280 C190,288 150,270 120,250 C80,225 60,180 70,140 C78,100 90,55 120,40 Z"
-                fill="url(#land)"
-                stroke="url(#border)"
-                strokeWidth="1.5"
-              />
-              {/* grid */}
-              {[...Array(8)].map((_, i) => (
-                <line key={`h${i}`} x1="0" y1={i * 40} x2="400" y2={i * 40} stroke="oklch(0.78 0.13 85 / 0.05)" />
-              ))}
-              {[...Array(10)].map((_, i) => (
-                <line key={`v${i}`} x1={i * 40} y1="0" x2={i * 40} y2="320" stroke="oklch(0.78 0.13 85 / 0.05)" />
-              ))}
-            </svg>
+            <img src={odishaMapImage} alt="Map of Odisha" className="h-full w-full object-cover opacity-60 mix-blend-luminosity" />
 
             {sites.map((s) => {
               const isActive = active.id === s.id;
@@ -75,16 +101,26 @@ export function HeritageMap() {
                   aria-label={s.name}
                 >
                   <span className="relative flex items-center justify-center">
-                    <span className={`absolute h-8 w-8 rounded-full bg-primary/40 ${isActive ? "animate-pulse-marker" : "opacity-50"}`} />
-                    <span className={`relative grid h-7 w-7 place-items-center rounded-full border-2 transition-all ${
-                      isActive ? "border-primary bg-primary text-primary-foreground gold-glow scale-110" : "border-primary/70 bg-navy text-primary"
-                    }`}>
+                    <span
+                      className={`absolute h-8 w-8 rounded-full bg-primary/40 ${isActive ? "animate-pulse-marker" : "opacity-50"}`}
+                    />
+                    <span
+                      className={`relative grid h-7 w-7 place-items-center rounded-full border-2 transition-all ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground gold-glow scale-110"
+                          : "border-primary/70 bg-navy text-primary"
+                      }`}
+                    >
                       <MapPin className="h-3.5 w-3.5" />
                     </span>
                   </span>
-                  <span className={`mt-1 block whitespace-nowrap text-[10px] uppercase tracking-widest transition ${
-                    isActive ? "text-primary" : "text-muted-foreground"
-                  }`}>{s.name}</span>
+                  <span
+                    className={`mt-1 block whitespace-nowrap text-[10px] uppercase tracking-widest transition ${
+                      isActive ? "text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    {s.name}
+                  </span>
                 </button>
               );
             })}
@@ -108,12 +144,20 @@ export function HeritageMap() {
                 <Info label="Coordinates" value={active.coords} />
                 <Info label="Status" value="UNESCO / ASI" />
               </div>
-              <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{active.description}</p>
+              <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
+                {active.description}
+              </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#explorer" className="btn-gold btn-gold-hover inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm">
+                <a
+                  href="#explorer"
+                  className="btn-gold btn-gold-hover inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm"
+                >
                   <Eye className="h-4 w-4" /> View in 3D
                 </a>
-                <a href="#ar" className="glass inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-ivory">
+                <a
+                  href="#ar"
+                  className="glass inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-ivory"
+                >
                   <Sparkles className="h-4 w-4 text-primary" /> Launch AR
                 </a>
               </div>

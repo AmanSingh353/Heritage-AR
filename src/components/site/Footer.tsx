@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import logoImg from "../../assets/Logo.png";
 
 export function Footer() {
   return (
@@ -7,9 +7,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
-              <div className="grid h-9 w-9 place-items-center rounded-xl btn-gold">
-                <Sparkles className="h-4 w-4" />
-              </div>
+              <img src={logoImg} alt="HeritageAR Logo" className="object-contain h-[48px] w-[48px] border border-[#ddb049] rounded-[40px]" />
               <span className="font-display text-lg font-bold tracking-wider">
                 Heritage<span className="text-gold">AR</span>
               </span>

@@ -31,7 +31,7 @@ export function Timeline() {
               <motion.div style={{ width: progress }} className="h-full bg-gradient-to-r from-primary via-primary to-transparent gold-glow" />
             </div>
 
-            <div className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 md:gap-8">
+            <div className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 py-8 md:gap-8">
               {milestones.map((m, idx) => (
                 <motion.div
                   key={m.title}

@@ -15,34 +15,22 @@ type Model = {
 };
 
 const models: Model[] = [
-  { id: "jag", name: "Jagannath Temple", shape: "temple", style: "Kalinga Architecture", height: "65 m", year: "1161 CE", material: "Sandstone & Granite" },
+  { id: "ranipur", name: "Ranipur Jharial", shape: "temple", style: "Chausath Yogini Temple", height: "5 m", year: "8th century CE", material: "Sandstone" },
   { id: "raj", name: "Rajarani Temple", shape: "tower", style: "Pancha-ratha Nagara", height: "18 m", year: "11th century", material: "Khondalite" },
   { id: "kon", name: "Konark Sun Temple", shape: "wheel", style: "Kalinga Chariot Temple", height: "30 m", year: "13th century CE", material: "Khondalite & Laterite" },
   { id: "dhauli", name: "Dhauli Hill", shape: "stupa", style: "Buddhist Shanti Stupa", height: "15 m", year: "3rd century BCE", material: "Marble & Laterite" },
 ];
 
-function TempleMesh() {
+function RanipurJharialModel() {
+  const { scene } = useGLTF("/models/ranipur-jharial.glb");
   return (
-    <group>
-      <mesh position={[0, -1.2, 0]}>
-        <boxGeometry args={[2.6, 0.3, 2.6]} />
-        <meshStandardMaterial color="#8a6a3a" roughness={0.8} metalness={0.2} />
-      </mesh>
-      <mesh position={[0, -0.5, 0]}>
-        <boxGeometry args={[2, 1.1, 2]} />
-        <meshStandardMaterial color="#a07a44" roughness={0.7} />
-      </mesh>
-      <mesh position={[0, 0.5, 0]}>
-        <coneGeometry args={[1.2, 1.8, 8]} />
-        <meshStandardMaterial color="#c89a5a" roughness={0.6} metalness={0.3} />
-      </mesh>
-      <mesh position={[0, 1.55, 0]}>
-        <sphereGeometry args={[0.18, 16, 16]} />
-        <meshStandardMaterial color="#d4af37" metalness={0.9} roughness={0.2} emissive="#d4af37" emissiveIntensity={0.3} />
-      </mesh>
-    </group>
+    <Center>
+      <primitive object={scene} scale={1.5} />
+    </Center>
   );
 }
+
+useGLTF.preload("/models/ranipur-jharial.glb");
 
 function RajaraniModel() {
   const { scene } = useGLTF("/models/rajarani.glb");
@@ -78,7 +66,7 @@ function DhauliHillModel() {
 useGLTF.preload("/models/dhaulihill.glb");
 
 function ModelByShape({ shape }: { shape: Model["shape"] }) {
-  if (shape === "temple") return <TempleMesh />;
+  if (shape === "temple") return <RanipurJharialModel />;
   if (shape === "wheel") return <KonarkSunTempleModel />;
   if (shape === "tower") return <RajaraniModel />;
   return <DhauliHillModel />;

@@ -18,7 +18,7 @@ const models: Model[] = [
   { id: "jag", name: "Jagannath Temple", shape: "temple", style: "Kalinga Architecture", height: "65 m", year: "1161 CE", material: "Sandstone & Granite" },
   { id: "raj", name: "Rajarani Temple", shape: "tower", style: "Pancha-ratha Nagara", height: "18 m", year: "11th century", material: "Khondalite" },
   { id: "wheel", name: "Konark Wheel", shape: "wheel", style: "Solar Iconography", height: "3 m", year: "1250 CE", material: "Chlorite & Khondalite" },
-  { id: "rat", name: "Ratnagiri Stupa", shape: "stupa", style: "Buddhist Monastic", height: "12 m", year: "5th century", material: "Brick & Stone" },
+  { id: "dhauli", name: "Dhauli Hill", shape: "stupa", style: "Buddhist Shanti Stupa", height: "15 m", year: "3rd century BCE", material: "Marble & Laterite" },
 ];
 
 function TempleMesh() {
@@ -80,30 +80,22 @@ function WheelMesh() {
   );
 }
 
-function StupaMesh() {
+function DhauliHillModel() {
+  const { scene } = useGLTF("/models/dhaulihill.glb");
   return (
-    <group>
-      <mesh position={[0, -0.7, 0]}>
-        <cylinderGeometry args={[1.4, 1.5, 0.3, 32]} />
-        <meshStandardMaterial color="#7a5a36" roughness={0.8} />
-      </mesh>
-      <mesh position={[0, 0.1, 0]}>
-        <sphereGeometry args={[1.1, 32, 32]} />
-        <meshStandardMaterial color="#a07a44" roughness={0.7} />
-      </mesh>
-      <mesh position={[0, 1.05, 0]}>
-        <coneGeometry args={[0.25, 0.9, 16]} />
-        <meshStandardMaterial color="#d4af37" metalness={0.7} roughness={0.3} emissive="#d4af37" emissiveIntensity={0.25} />
-      </mesh>
-    </group>
+    <Center>
+      <primitive object={scene} scale={1.5} />
+    </Center>
   );
 }
+
+useGLTF.preload("/models/dhaulihill.glb");
 
 function ModelByShape({ shape }: { shape: Model["shape"] }) {
   if (shape === "temple") return <TempleMesh />;
   if (shape === "wheel") return <WheelMesh />;
   if (shape === "tower") return <RajaraniModel />;
-  return <StupaMesh />;
+  return <DhauliHillModel />;
 }
 
 export function MonumentExplorer() {

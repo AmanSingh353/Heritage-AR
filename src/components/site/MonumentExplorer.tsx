@@ -1,6 +1,6 @@
 import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float, Environment } from "@react-three/drei";
+import { OrbitControls, Float, Environment, useGLTF, Center } from "@react-three/drei";
 import { motion } from "framer-motion";
 import { SectionHeader } from "./FeaturedSites";
 
@@ -44,22 +44,16 @@ function TempleMesh() {
   );
 }
 
-function TowerMesh() {
+function RajaraniModel() {
+  const { scene } = useGLTF("/models/rajarani.glb");
   return (
-    <group>
-      {[0, 1, 2, 3].map((i) => (
-        <mesh key={i} position={[0, i * 0.55 - 0.8, 0]}>
-          <cylinderGeometry args={[1.1 - i * 0.18, 1.2 - i * 0.18, 0.5, 8]} />
-          <meshStandardMaterial color={`hsl(${28 + i * 4}, 45%, ${50 - i * 4}%)`} roughness={0.7} />
-        </mesh>
-      ))}
-      <mesh position={[0, 1.55, 0]}>
-        <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial color="#d4af37" metalness={0.9} roughness={0.2} emissive="#d4af37" emissiveIntensity={0.4} />
-      </mesh>
-    </group>
+    <Center>
+      <primitive object={scene} scale={1.5} />
+    </Center>
   );
 }
+
+useGLTF.preload("/models/rajarani.glb");
 
 function WheelMesh() {
   return (
@@ -108,7 +102,7 @@ function StupaMesh() {
 function ModelByShape({ shape }: { shape: Model["shape"] }) {
   if (shape === "temple") return <TempleMesh />;
   if (shape === "wheel") return <WheelMesh />;
-  if (shape === "tower") return <TowerMesh />;
+  if (shape === "tower") return <RajaraniModel />;
   return <StupaMesh />;
 }
 

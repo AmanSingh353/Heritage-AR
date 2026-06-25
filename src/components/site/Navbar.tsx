@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logoImg from "../../assets/Logo.png";
+import { AR_APP_FILENAME, AR_APP_URL } from "@/lib/ar-app";
 const links = [
   { label: "Home", href: "#home" },
   { label: "Monuments", href: "#monuments" },
@@ -72,7 +73,8 @@ export function Navbar({
               {theme === "dark" ? "☾" : "☀"}
             </button>
             <a
-              href="#ar"
+              href={AR_APP_URL}
+              download={AR_APP_FILENAME}
               className="hidden btn-gold btn-gold-hover rounded-lg px-4 py-2 text-sm md:inline-block"
             >
               Launch AR
@@ -106,7 +108,8 @@ export function Navbar({
                 </a>
               ))}
               <a
-                href="#ar"
+                href={AR_APP_URL}
+                download={AR_APP_FILENAME}
                 onClick={() => setOpen(false)}
                 className="btn-gold mt-2 rounded-lg px-4 py-2.5 text-center text-sm"
               >

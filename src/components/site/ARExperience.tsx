@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Camera, Sparkles, ScanLine, Wifi, Battery } from "lucide-react";
 import konark from "@/assets/konark.jpg";
+import { AR_APP_FILENAME, AR_APP_URL } from "@/lib/ar-app";
 import { SectionHeader } from "./FeaturedSites";
 
 export function ARExperience() {
@@ -113,7 +114,11 @@ export function ARExperience() {
                 </div>
               </motion.div>
             ))}
-            <a href="#ar" className="btn-gold btn-gold-hover inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm">
+            <a
+              href={AR_APP_URL}
+              download={AR_APP_FILENAME}
+              className="btn-gold btn-gold-hover inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm"
+            >
               <Sparkles className="h-4 w-4" /> Launch AR Experience
             </a>
           </div>

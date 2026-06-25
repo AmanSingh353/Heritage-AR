@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Eye, Sparkles } from "lucide-react";
 import { SectionHeader } from "./FeaturedSites";
+import { AR_APP_FILENAME, AR_APP_URL } from "@/lib/ar-app";
 import odishaMapImage from "../../assets/Odisha_Map.svg";
 
 type Site = {
@@ -155,7 +156,8 @@ export function HeritageMap() {
                   <Eye className="h-4 w-4" /> View in 3D
                 </a>
                 <a
-                  href="#ar"
+                  href={AR_APP_URL}
+                  download={AR_APP_FILENAME}
                   className="glass inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-ivory"
                 >
                   <Sparkles className="h-4 w-4 text-primary" /> Launch AR

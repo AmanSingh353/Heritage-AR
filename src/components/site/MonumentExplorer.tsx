@@ -17,7 +17,7 @@ type Model = {
 const models: Model[] = [
   { id: "jag", name: "Jagannath Temple", shape: "temple", style: "Kalinga Architecture", height: "65 m", year: "1161 CE", material: "Sandstone & Granite" },
   { id: "raj", name: "Rajarani Temple", shape: "tower", style: "Pancha-ratha Nagara", height: "18 m", year: "11th century", material: "Khondalite" },
-  { id: "wheel", name: "Konark Wheel", shape: "wheel", style: "Solar Iconography", height: "3 m", year: "1250 CE", material: "Chlorite & Khondalite" },
+  { id: "kon", name: "Konark Sun Temple", shape: "wheel", style: "Kalinga Chariot Temple", height: "30 m", year: "13th century CE", material: "Khondalite & Laterite" },
   { id: "dhauli", name: "Dhauli Hill", shape: "stupa", style: "Buddhist Shanti Stupa", height: "15 m", year: "3rd century BCE", material: "Marble & Laterite" },
 ];
 
@@ -55,30 +55,16 @@ function RajaraniModel() {
 
 useGLTF.preload("/models/rajarani.glb");
 
-function WheelMesh() {
+function KonarkSunTempleModel() {
+  const { scene } = useGLTF("/models/konark-sun-temple.glb");
   return (
-    <group rotation={[0.4, 0, 0]}>
-      <mesh>
-        <torusGeometry args={[1.3, 0.12, 16, 64]} />
-        <meshStandardMaterial color="#c9a14a" metalness={0.7} roughness={0.3} />
-      </mesh>
-      <mesh>
-        <torusGeometry args={[0.95, 0.08, 16, 64]} />
-        <meshStandardMaterial color="#b58a3a" metalness={0.6} roughness={0.4} />
-      </mesh>
-      {[...Array(8)].map((_, i) => (
-        <mesh key={i} rotation={[0, 0, (i * Math.PI) / 4]}>
-          <boxGeometry args={[2.6, 0.08, 0.08]} />
-          <meshStandardMaterial color="#a47830" metalness={0.6} roughness={0.4} />
-        </mesh>
-      ))}
-      <mesh>
-        <sphereGeometry args={[0.25, 32, 32]} />
-        <meshStandardMaterial color="#d4af37" metalness={0.95} roughness={0.15} emissive="#d4af37" emissiveIntensity={0.5} />
-      </mesh>
-    </group>
+    <Center>
+      <primitive object={scene} scale={1.5} />
+    </Center>
   );
 }
+
+useGLTF.preload("/models/konark-sun-temple.glb");
 
 function DhauliHillModel() {
   const { scene } = useGLTF("/models/dhaulihill.glb");
@@ -93,7 +79,7 @@ useGLTF.preload("/models/dhaulihill.glb");
 
 function ModelByShape({ shape }: { shape: Model["shape"] }) {
   if (shape === "temple") return <TempleMesh />;
-  if (shape === "wheel") return <WheelMesh />;
+  if (shape === "wheel") return <KonarkSunTempleModel />;
   if (shape === "tower") return <RajaraniModel />;
   return <DhauliHillModel />;
 }

@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import ratnagiri from "@/assets/ratnagiri.jpg";
+import dhauliHill from "@/assets/Dhauli_Hill.png";
 import rajarani from "@/assets/rajarani.jpg";
 import mukteswara from "@/assets/mukteswara.jpg";
 import jagannath from "@/assets/jagannath.jpg";
 import konark from "@/assets/konark.jpg";
-import udayagiri from "@/assets/udayagiri.jpg";
+import ranipurJharial from "@/assets/Ranipur_Jharial.png";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+
 
 const sites = [
-  { name: "Ratnagiri", era: "5th century CE", img: ratnagiri, desc: "A Buddhist monastery complex of stupas and viharas hidden in the green Assia hills." },
-  { name: "Rajarani Temple", era: "11th century CE", img: rajarani, desc: "Sculpted from richly-coloured Khondalite sandstone — a temple without a deity." },
-  { name: "Mukteswara Temple", era: "10th century CE", img: mukteswara, desc: "The gem of Odisha architecture, famed for its ornate torana arch." },
-  { name: "Jagannath Temple", era: "12th century CE", img: jagannath, desc: "One of the Char Dham — a living temple of devotion in Puri." },
-  { name: "Konark Sun Temple", era: "13th century CE", img: konark, desc: "A monumental chariot for the sun god, a UNESCO World Heritage Site." },
-  { name: "Udayagiri & Khandagiri", era: "2nd century BCE", img: udayagiri, desc: "Rock-cut Jain caves carved into twin hills overlooking Bhubaneswar." },
+  { name: "Dhauli Hill", era: "3rd century BCE", img: dhauliHill, desc: "A beautiful white Buddhist stupa build by Japanese Buddhist organization as a symbol of peace", location: "Enter location...", origin: "Enter origin...", builtBy: "Enter builder...", fullDesc: "This text only appears in the dialog. Replace me with full details!" },
+  { name: "Rajarani Temple", era: "11th century CE", img: rajarani, desc: "Sculpted from richly-coloured Khondalite sandstone — a temple without a deity.", location: "Enter location...", origin: "Enter origin...", builtBy: "Enter builder...", fullDesc: "This text only appears in the dialog. Replace me with full details!" },
+  { name: "Mukteswara Temple", era: "10th century CE", img: mukteswara, desc: "The gem of Odisha architecture, famed for its ornate torana arch.", location: "Enter location...", origin: "Enter origin...", builtBy: "Enter builder...", fullDesc: "This text only appears in the dialog. Replace me with full details!" },
+  { name: "Jagannath Temple", era: "12th century CE", img: jagannath, desc: "One of the Char Dham — a living temple of devotion in Puri.", location: "Enter location...", origin: "Enter origin...", builtBy: "Enter builder...", fullDesc: "This text only appears in the dialog. Replace me with full details!" },
+  { name: "Konark Sun Temple", era: "13th century CE", img: konark, desc: "A monumental chariot for the sun god, a UNESCO World Heritage Site.", location: "Enter location...", origin: "Enter origin...", builtBy: "Enter builder...", fullDesc: "This text only appears in the dialog. Replace me with full details!" },
+  { name: "Ranipur Jharial", era: "8th century CE", img: ranipurJharial, desc: "An open-air circular temple dedicated to the 64 Yoginis (8th–9th century CE). ", location: "Balangir District, Odisha, India.", origin: "8th–9th Century CE", builtBy: "Somavamsi Rulers", fullDesc: "Ranipur Jharial is an ancient temple complex dating back to the 8th–9th century CE. Known as the 'Som Tirtha' of Western Odisha, it is home to over 50 temples and shrines. The site is best known for the rare Chausath Yogini Temple and the Somesvara Temple, which showcase early Kalinga architecture, intricate stone carvings, and the region's rich spiritual, cultural, and artistic heritage." },
 ];
 
 export function FeaturedSites() {
@@ -54,10 +56,59 @@ export function FeaturedSites() {
                   {s.desc}
                 </p>
                 <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
-                  <a href="#map" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                    Explore Details
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="inline-flex items-center gap-1.5 text-sm font-medium text-primary cursor-pointer outline-none">
+                        Explore Details
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-5xl w-[90vw] sm:w-[70vw] glass-strong p-0 overflow-hidden">
+                      <div className="grid grid-cols-1 md:grid-cols-2">
+                        {/* Image Section */}
+                        <div className="relative h-64 md:h-full min-h-[300px]">
+                          <img src={s.img} alt={s.name} className="absolute inset-0 w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-navy" />
+                        </div>
+                        
+                        {/* Content Section */}
+                        <div className="p-6 sm:p-8 flex flex-col h-full bg-navy/40">
+                          <DialogHeader className="mb-6 text-left">
+                            <DialogTitle className="font-display text-3xl text-ivory">{s.name}</DialogTitle>
+                            <DialogDescription className="text-primary tracking-widest uppercase text-xs mt-2">
+                              {s.era}
+                            </DialogDescription>
+                          </DialogHeader>
+
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-5 mb-6">
+                            <div className="space-y-1.5">
+                              <span className="text-xs uppercase tracking-widest text-primary/80 font-semibold">Location</span>
+                              <p className="text-sm text-ivory/90">{s.location}</p>
+                            </div>
+                            <div className="space-y-1.5">
+                              <span className="text-xs uppercase tracking-widest text-primary/80 font-semibold">Origin</span>
+                              <p className="text-sm text-ivory/90">{s.origin}</p>
+                            </div>
+                            <div className="space-y-1.5 col-span-2">
+                              <span className="text-xs uppercase tracking-widest text-primary/80 font-semibold">Built By</span>
+                              <p className="text-sm text-ivory/90">{s.builtBy}</p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 border-t border-border/40 pt-5 flex-grow">
+                            <span className="text-xs uppercase tracking-widest text-primary/80 font-semibold">Description</span>
+                            <p className="text-sm text-ivory/80 leading-relaxed whitespace-pre-wrap text-justify">{s.fullDesc}</p>
+                          </div>
+
+                          <div className="mt-8 flex justify-end">
+                            <button className="bg-primary hover:bg-primary/90 text-navy px-6 py-2.5 rounded-md text-sm font-semibold transition-colors shadow-lg shadow-primary/20">
+                              Start AR Experience
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   <span className="text-[11px] uppercase tracking-widest text-muted-foreground">
                     AR Ready
                   </span>
